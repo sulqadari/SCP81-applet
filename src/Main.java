@@ -4,14 +4,14 @@ import javacard.framework.ISO7816;
 import javacard.framework.ISOException;
 import javacard.security.CryptoException;
 
-public class Empty extends Applet {
+public class Main extends Applet {
 
-    private Empty(byte[] parameters, short offset, byte length) {
+    private Main(byte[] parameters, short offset, byte length) {
         register(parameters, (short) (offset + 1), parameters[offset]);
     }
 
     public static void install(byte[] parameters, short offset, byte length) {
-        new Empty(parameters, offset, length);
+        new Main(parameters, offset, length);
     }
 
     public void process(APDU apdu) throws ISOException {
