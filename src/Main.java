@@ -1,32 +1,36 @@
 import javacard.framework.AID;
 import javacard.framework.APDU;
 import javacard.framework.Applet;
-import javacard.framework.ISO7816;
 import javacard.framework.ISOException;
 import javacard.framework.Shareable;
-import javacard.security.CryptoException;
 
-import uicc.toolkit.EnvelopeHandler;
-import uicc.toolkit.EnvelopeHandlerSystem;
-import uicc.toolkit.ProactiveHandler;
-import uicc.toolkit.ProactiveHandlerSystem;
-import uicc.toolkit.ToolkitConstants;
 import uicc.toolkit.ToolkitInterface;
 import uicc.toolkit.ToolkitRegistry;
 import uicc.toolkit.ToolkitRegistrySystem;
+
+import uicc.usim.toolkit.ToolkitConstants;
+import uicc.usim.toolkit.USATEnvelopeHandler;
+import uicc.usim.toolkit.USATEnvelopeHandlerSystem;
 
 import org.globalplatform.Personalization;
 
 public class Main extends Applet implements Personalization, ToolkitInterface, ToolkitConstants {
 
     private
-    Main(byte[] parameters, short offset, byte length) {
-        register(parameters, (short) (offset + 1), parameters[offset]);
+    Main(byte[] parameters, short offset, byte length)
+    {
+        
     }
 
     public static void
-    install(byte[] parameters, short offset, byte length) {
-        new Main(parameters, offset, length);
+    install(byte[] parameters, short offset, byte length)
+    {
+        Main thisApp = new Main(parameters, offset, length);
+        thisApp.register(parameters, (short) (offset + 1), parameters[offset]);
+        
+        ToolkitRegistry regEntry = ToolkitRegistrySystem.getEntry();
+        regEntry.setEvent(EVENT_FORMATTED_SMS_PP_ENV);
+		regEntry.setEvent(EVENT_FORMATTED_SMS_PP_UPD);
     }
 
     public void
@@ -39,8 +43,23 @@ public class Main extends Applet implements Personalization, ToolkitInterface, T
         return 0x6f00;
     }
 
-    public void processToolkit(short event) {
-
+    public void processToolkit(short event)
+    {
+        USATEnvelopeHandler envHdlr = USATEnvelopeHandlerSystem.getTheHandler();
+        short off, len;
+        
+        switch(event)
+        {
+            case EVENT_FORMATTED_SMS_PP_ENV:
+            case EVENT_FORMATTED_SMS_PP_UPD:
+                off = envHdlr.getSecuredDataOffset();
+                len = envHdlr.getSecuredDataLength();
+                /* TODO: parse incoming SMS and then trigger the HTTPs session */
+            break;
+            case EVENT_PROFILE_DOWNLOAD:
+                
+            break;
+        }
     }
 
     public Shareable getshareableInterfaceObject(AID aid, byte param)
