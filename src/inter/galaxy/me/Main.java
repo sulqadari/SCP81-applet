@@ -4,6 +4,7 @@ import javacard.framework.AID;
 import javacard.framework.APDU;
 import javacard.framework.Applet;
 import javacard.framework.ISOException;
+import javacard.framework.JCSystem;
 import javacard.framework.Shareable;
 import uicc.toolkit.ProactiveHandler;
 import uicc.toolkit.ProactiveHandlerSystem;
@@ -32,7 +33,7 @@ public class Main extends Applet implements Personalization, ToolkitInterface, T
 
     public Main()
 	{
-		data = new byte[128];
+		data = JCSystem.makeTransientByteArray((short)128, JCSystem.CLEAR_ON_RESET);
 		trigger = new TriggerSession(); 
 	}
 

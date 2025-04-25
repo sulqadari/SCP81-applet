@@ -1,14 +1,10 @@
 #!/usr/bin/bash
 
-if [ -z "${JAVA_HOME}" ]; then
-	export JAVA_HOME=/usr/bin/java
-	export PATH=$JAVA_HOME/bin:$PATH
-fi
+export JAVA_HOME=/usr/bin/java
+export PATH=$JAVA_HOME/bin:$PATH
 
-if [ -z "${JC_HOME}" ]; then
-	export JC_HOME=./libraries/jc304_kit
-	export PATH=$JC_HOME/bin:$PATH
-fi
+export JC_HOME=./libraries/jc304_kit
+export PATH=$JC_HOME/bin:$PATH
 
 if [ -d build ]; then
 	rm -rf build
@@ -44,5 +40,5 @@ javac -Xlint:-options -Xlint:deprecation -g -d $build_dir -classpath $jar_files 
 jc_converter=./libraries/jc304_kit/lib/tools.jar
 
 java -Djc.home=$JC_HOME -cp $jc_converter com.sun.javacard.converter.Main -i -classdir $build_dir -out CAP EXP JCA -exportpath $export_files \
--applet 0xB0:0x00:0x00:0x00:0x81:0x0B:0x52:0x81:0x00:0x00:0x01:0x81:0x42:0x49:0x44:0x08 $applet_name \
-$package_name 0xB0:0x00:0x00:0x00:0x81:0x0B:0x52:0x81:0x00:0x00:0x01:0x81:0x42:0x49:0x44:0x00 1.0
+-applet 0xA0:0x00:0x00:0x00:0x00:0x00:0x00:0x00 $applet_name \
+$package_name 0xA0:0x00:0x00:0x00:0x00:0x00:0x00:0x00:0x01 1.0
