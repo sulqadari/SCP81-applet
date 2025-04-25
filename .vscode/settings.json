@@ -14,6 +14,7 @@
         "libraries/jc304_kit/lib/JCBytecodeProfiler.jar",
         "libraries/jc304_kit/lib/jctasks.jar",
         "libraries/jc304_kit/lib/tools.jar",
-        "libraries/GP-v171/1.7/gpapi-globalplatform.jar"
+        "libraries/GP-v171/1.7/gpapi-globalplatform.jar",
+        "libraries/UICC-API/uicc-api-for-java-card-REL-15_2.jar"
     ]
 }
