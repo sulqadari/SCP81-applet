@@ -16,6 +16,10 @@
         "libraries/jc304_kit/lib/tools.jar",
         "libraries/GP-v171/1.7/gpapi-globalplatform.jar",
         "libraries/UICC-API/uicc-api-for-java-card-REL-15_2.jar",
-        "libraries/USIM-API/usim-api-for-java-card-REL-15_2.jar"
+        "libraries/USIM-API/usim-api-for-java-card-REL-15_2.jar",
+        "/home/telman/Develop/JavaCard/Libraries/USIM-API/usim-api-for-java-card-REL-15_2.jar",
+        "/home/telman/Develop/JavaCard/Libraries/UICC-API/uicc-api-for-java-card-REL-15_2.jar",
+        "/home/telman/Develop/JavaCard/Libraries/GP-v171/1.7/gpapi-globalplatform.jar",
+        "/home/telman/Develop/JavaCard/Libraries/jc304_kit/lib/api_classic.jar"
     ]
 }
