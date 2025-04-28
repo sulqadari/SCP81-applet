@@ -1,8 +1,5 @@
 #!/usr/bin/bash
 
-export JAVA_HOME=$(whereis "java")
-export PATH=$JAVA_HOME/bin:$PATH
-
 export JC_HOME=../Libraries/jc304_kit
 export PATH=$JC_HOME/bin:$PATH
 
